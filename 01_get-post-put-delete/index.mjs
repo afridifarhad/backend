@@ -36,6 +36,20 @@ app.delete("/about", (req, res) => {
 app.get("/contact", (req, res) => {
     res.send("This is the CONTACT page")
 })
+//// Post reqest to '/contact'
+app.post("/contact", (req, res) => {
+    const data = req.body
+    res.send(`Data received on Contact page: ${JSON.stringify(data)}`)
+});
+/// Put request to contact
+app.put("/contact", (req, res) => {
+    const updateData = req.body
+    res.send(`Data Update on Contact page: ${JSON.stringify(updateData)}`)
+});
+///  delete request to contact
+app.delete("/contact", (req, res) => {
+    res.send("Contact page data delete successfully")
+})
 
 
 
