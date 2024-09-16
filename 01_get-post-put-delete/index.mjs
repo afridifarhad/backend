@@ -3,6 +3,27 @@ import express from 'express'
 const app = express()
 const PORT = 3000
 
+const items = [
+    {
+        id: 1,
+        name: "Farhad Ullah",
+        age: 25,
+        city: "Peshawar"
+    },
+    {
+        id: 2,
+        name: "Ali Khan",
+        age: 19,
+        city: "Islamabad"
+    },
+    {
+        id: 3,
+        name: "Musa Alam",
+        age: 27,
+        city: "Karachi"
+
+    }
+]
  
 /// Root page
 app.get("/", (req, res) => {
@@ -50,6 +71,7 @@ app.put("/contact", (req, res) => {
 app.delete("/contact", (req, res) => {
     res.send("Contact page data delete successfully")
 })
+
 
 
 
