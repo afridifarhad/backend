@@ -108,6 +108,19 @@ app.put("/items/:id", (req, res) => {
     }
 })
 
+/// delete an item by id
+app.delete("/items/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const itemIndex = items.findIndex(item => item.id === id)
+    
+    if(itemIndex !== -1){
+        items.splice(itemIndex, 1) ;
+        res.status(200).json({message: "Item Deleted Successfully"})
+    }else{
+        res.status(404).json({message: "Item not found"})
+        
+    }
+})
 
 app.listen(PORT, () => {
     console.log(`Server is listening on http://localhost:${PORT}`)
