@@ -3,6 +3,8 @@ import express from 'express'
 const app = express()
 const PORT = 3000
 
+app.use(express.json())
+
 const items = [
     {
         id: 1,
@@ -72,6 +74,22 @@ app.delete("/contact", (req, res) => {
     res.send("Contact page data delete successfully")
 })
 
+// get retrieve all items
+app.get("/items", (req,res) => {
+    res.status(200).json(items)
+})
+
+// post add a new item 
+app.post("/items", (req, res) => {
+    const newItem = {
+        id: items.length + 1,
+        name: req.body.name,
+    age: req.body.age,
+    city: req.body.city
+    }
+    items.push(newItem)
+    res.status(201).json(newItem)
+})
 
 
 
