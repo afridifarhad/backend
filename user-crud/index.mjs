@@ -38,6 +38,19 @@ app.post("/api/users", (req, res) => {
 
 })
 
+// update a user 
+
+app.put("/api/users/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const userIndex = users.findIndex(user => user.id === id)
+
+    if(userIndex !== -1){
+        users[userIndex].name = req.body.name
+        users[userIndex].email = req.body.email
+
+        res.status(200).json(users[userIndex])
+    }
+})
 
 
 
