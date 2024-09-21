@@ -27,7 +27,7 @@ const items = [
     }
 ]
  
-/// Root page
+/// Root page 
 app.get("/", (req, res) => {
     res.send("Welcome to the HOME page")
 })
@@ -113,7 +113,7 @@ app.delete("/items/:id", (req, res) => {
     const id = parseInt(req.params.id)
     const itemIndex = items.findIndex(item => item.id === id)
     
-    if(itemIndex !== -1){
+    if(itemIndex  !== -1){
         items.splice(itemIndex, 1) ;
         res.status(200).json({message: "Item Deleted Successfully"})
     }else{
