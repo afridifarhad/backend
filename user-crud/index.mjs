@@ -58,7 +58,11 @@ app.put("/api/users/:id", (req, res) => {
 app.delete("/api/users/:id", (req,res) => {
     const id = parseInt(req.params.id) 
     const userIndex = users.findIndex(user => user.id == id)
+
+    if(userIndex !== -1){
+        users.splice(userIndex, 1)
     
+    }
 } )
 
 
