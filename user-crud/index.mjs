@@ -54,14 +54,17 @@ app.put("/api/users/:id", (req, res) => {
     }
 
 })
-// delete user by his id
+// remove user by his id
 app.delete("/api/users/:id", (req,res) => {
     const id = parseInt(req.params.id) 
     const userIndex = users.findIndex(user => user.id == id)
 
     if(userIndex !== -1){
         users.splice(userIndex, 1)
-    
+        res.status(200).json({message: "User deleted Successfully"})
+    }
+    else{
+        res.status(404).json({message: "User not found."})
     }
 } )
 
