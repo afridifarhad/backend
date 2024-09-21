@@ -38,7 +38,7 @@ app.post("/api/users", (req, res) => {
 
 })
 
-// update a user 
+// update user by his id
 
 app.put("/api/users/:id", (req, res) => {
     const id = parseInt(req.params.id)
@@ -54,6 +54,12 @@ app.put("/api/users/:id", (req, res) => {
     }
 
 })
+// delete user by his id
+app.delete("/api/users/:id", (req,res) => {
+    const id = parseInt(req.params.id) 
+    const userIndex = users.findIndex(user => user.id == id)
+    
+} )
 
 
 
