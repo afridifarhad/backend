@@ -49,7 +49,10 @@ app.put("/api/users/:id", (req, res) => {
         users[userIndex].email = req.body.email
 
         res.status(200).json(users[userIndex])
+    }else{
+        res.status(404).json({message: "user not found"})
     }
+
 })
 
 
