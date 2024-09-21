@@ -3,6 +3,9 @@ import express from "express"
 const app = express()
 const PORT = 3000
 
+app.use(express.json())
+
+
 const users = [
     {
         id: 1,
@@ -16,11 +19,24 @@ const users = [
     }
 ]
 
+  // fetching the users an array
 app.get("/api/users", (req, res) => {
     res.status(200).json(users)
 
 })
 
+// create a new user
+app.post("/api/users", (req, res) => {
+
+    const newUser = {
+        id: users.length +1,
+        name: req.body.name,
+        email: req.body.email
+    }
+    users.push(newUser)
+    res.status(201).json(newUser)
+
+})
 
 
 
