@@ -16,8 +16,8 @@ function App() {
   async function fetchUsers() {
     const response = await axios.get (API_URL)
     const content = response.data
-    console.log(content)
-    //setUsers(content.data)
+    //console.log(content)
+    setUsers(content.data)
     
   }
 
@@ -39,6 +39,28 @@ function App() {
 
   }
 
+  // update a user
+
+  const updateUserById = (id) => {
+    axios.put(`${API_URL}/${id}`, {name: updateUser.name})
+    .then(response => {
+      setUsers(users.map(user => (user.id === id ? response.data : user)))
+      setUpdateUser({ id: '', name: ''})
+      fetchUsers()
+
+
+    }).catch(err => console.error(err))
+
+  }
+   // Delete a user (DELETE)
+   const deleteUserById = (id) => {
+    axios.delete(`${API_URL}/${id}`)
+      .then(() => {
+        setUsers(users.filter(user => user.id !== id));
+      })
+      .catch(err => console.error(err));
+  };
+
 
   return (
     <>
@@ -52,7 +74,33 @@ function App() {
       <button onClick={addUser}>add user</button>
 
     
-    
+     {/* Update User */}
+      {updateUser.id && (
+        <div>
+          <input
+            type="text"
+            value={updateUser.name}
+            onChange={(e) => setUpdateUser({ ...updateUser, name: e.target.value })}
+            placeholder="Update user name"
+          />
+          <button onClick={() => updateUserById(updateUser.id)}>Update User</button>
+        </div>
+      )}
+
+      
+<ul>
+        {users.map(user => (
+          <li key={user.id}>
+            {user.name}
+            <button onClick={() => setUpdateUser({ id: user.id, name: user.name })}>
+              Edit
+            </button>
+            <button onClick={() => deleteUserById(user.id)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+
+
     </>
   )
 }
